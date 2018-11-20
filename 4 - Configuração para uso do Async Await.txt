@@ -1,0 +1,44 @@
+4 - Configurando para uso do async await e o axios
+
+
+- Instale as seguintes dependências: "yarn add @babel/plugin-transform-async-to-generator -D" e
+  "yarn add @babel/polyfill -D"
+
+- Em ".babelrc" adicione "@babel/plugin-transform-async-to-generator" em plugins.
+
+- Adicione "@babel/polyfill" no entry junto com caminho existente em "webpack.config.js". Anexo A
+
+- Caso aconteça algum erro referente ao @babel/polyfill. Faça a importação dessa dependência nos arquivos necessários.
+  "import "@babel/polyfill"
+
+Extra: Configurando o axios
+
+- Instale as seguintes dependências: "yarn add axios"
+
+- Para usa-lo nos arquivos: "import axios from 'axios';"
+
+Arquivos: 
+
+(A) webpack.config.js
+    module.exports ={
+    entry: ['@babel/polyfill','./src/main.js'],
+    output: {
+        path: __dirname  + '/public',
+        filename: 'bundle.js',
+    },
+    devServer: {
+        contentBase: __dirname + '/public'
+    },
+    module:{
+        rules:[
+         {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+                loader: 'babel-loader',
+            }
+         }
+        ],
+    },
+};
+

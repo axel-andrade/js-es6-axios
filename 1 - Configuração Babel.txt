@@ -1,0 +1,43 @@
+Configurando o projeto: 
+
+//Para o uso do Babel
+
+- Dentro da pasta do projeto abra o terminal
+- E digite yarn "init", será criado o arquivo package.json
+- No terminal instale as seguintes dependências: "yarn add @babel/cli",
+  "yarn add @babel/preset-env", "yarn add @babel/plugin-proposal-object-rest-spread" e "yarn add @babel/core" 
+- Se for usar controle de versão crie o arquivo ".gitignore"(Anexo A)
+- Crie o arquivo ".babelrc" na raiz do projeto (Anexo B)
+- Configure o arquivo "package.json" como no (Anexo C)
+- Execute no terminal "yarn dev" para traduzir main.js(ES6) para bundle.js(JS)
+- Utilize no seu index.html <script src="./bundle.js"></script>
+
+
+Arquivos:  
+
+(A) .gitignore
+	node_modules/
+
+(B) .babelrc
+	{
+	 "presets": ["@babel/preset-env"],
+         "plugins": ["@babel/plugin-proposal-object-rest-spread"]
+	}
+
+(C) package.json 
+	{
+  "name": "ES6",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6"
+  },
+  "scripts": {
+    "dev": "babel ./main.js -o ./bundle.js" ou "dev": "babel ./main.js -o ./bundle.js -w" 
+  }
+ }
+
+

@@ -1,0 +1,41 @@
+Configurando Webpack:
+
+//Webpack para conseguir utilizar vários arquivos .js
+
+- Realize o processo de configuração do @babel 
+
+- No arquivo package.json mude o nome "dependencies" para "devDependencies",
+  pois as dependências para webpack e para @babel são utilizadas em ambientes
+  de desenvolvindo, já no ambiente de produção é utilizado somente o arquivo ja 
+  convertido. (bundle.js)
+
+- Instale as seguintes dependências com -D "yarn add webpack webpack-cli -D","yarn add babel-loader -D"obs: para version 7 do babel usar versao acima de 8 para o babel loader
+
+- Crie o arquivo "webpack.config.js" na raiz projeto e configure da mesma foram do (anexo A)
+
+- no arquivo "package.json" mude o "dev": "babel ./main.js -o ./bundle.js -w" para
+  "dev": "webpack --mode=development -w" 
+
+
+Arquivos: 
+
+(A) webpack.config.js
+    module.exports = {
+        entry: './main.js',
+        output: {
+        path: __dirname,
+        filename: 'bundle.js',
+        },
+        module:{
+           rules:[
+             {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                       loader: 'babel-loader',
+                     }
+             }
+         ],
+    },
+};
+

@@ -1,0 +1,46 @@
+3 - Configurando Webpack Dev Server:
+
+//Dev Server serve para trabalhar com o projeto offline
+
+- Criar as pastas "public" e "src" pasta na raiz do projeto 
+
+- Na pasta "scr" coloque todos os códigos javascript necessário para a aplicação. Ex: main.js
+
+- Na pasta "public" coloque todos os arquivos tem necessidade de serem monitorados pelo webpack. Ex: index.html
+
+- Instale as dependências "yarn add webpack-dev-server -D"
+
+- Configure o arquivo "webpack.config.js". Adicione o "devServe" e mude os campos "entry", "path". De acordo com os novos caminhos das pastas "public" e "src". Anexo A
+
+- No arquivo "package.json" mude o "dev": "dev": "webpack --mode=development -w" para
+  "dev": "webpack-dev-server --mode=development" 
+
+- Caso deseje jogar o projeto para online(productiomn). Adicione em scripts 
+  "build": "webpack --mode=production"
+
+Arquivos: 
+
+(A) webpack.config.js
+    module.exports = {
+        entry: './src/main.js',
+        output: {
+        path: __dirname + '/public' ,
+        filename: 'bundle.js',
+        },
+	devServer:  {
+	  contentBase: __dirname + '/public' ,
+	},
+        module:{
+           rules:[
+             {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                       loader: 'babel-loader',
+                     }
+             }
+         ],
+    },
+};
+
+
